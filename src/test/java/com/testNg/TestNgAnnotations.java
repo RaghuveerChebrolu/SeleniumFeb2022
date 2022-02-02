@@ -12,33 +12,33 @@ import org.testng.annotations.AfterSuite;
 
 public class TestNgAnnotations {
 
-	@Test
+	@Test(priority=5)
 	public void testcase1() {
 		System.out.println("inside testcase1");
 	}
 	
-	@Test
-	public void testcase2() {
+	@Test(priority=-4)
+	public void aestcase2() {
 		System.out.println("inside testcase2");
 	}
 	
-	@Test
+	@Test(priority=0,dependsOnMethods = { "aestcase2" ,"Testcase4"})
 	public void testcase3() {
 		System.out.println("inside testcase3");
 	}
 	
-	@Test
-	public void testcase4() {
+	@Test(priority=-21)
+	public void Testcase4() {
 		System.out.println("inside testcase4");
 	}
 	
-	@Test
-	public void testcase5() {
+	@Test(priority=2)
+	public void testdase5() {
 		System.out.println("inside testcase5");
 	}
 	
-	@Test
-	public void testcase6() {
+	@Test(priority=2)
+	public void Bestcase6() {
 		System.out.println("inside testcase6");
 	}
 
@@ -52,10 +52,10 @@ public class TestNgAnnotations {
 		System.out.println("inside afterMethod");
 	}
 
-	@BeforeClass
+	/*@BeforeClass
 	public void beforeClass() {
 		System.out.println("inside beforeClass");
-	}
+	}*/
 
 	@AfterClass
 	public void afterClass() {
@@ -71,12 +71,12 @@ public class TestNgAnnotations {
 	public void afterTest() {
 		System.out.println("inside afterTest");
 	}
-
+/*
 	@BeforeSuite
 	public void beforeSuite() {
 		System.out.println("inside beforeSuite");
 	}
-
+*/
 	@AfterSuite
 	public void afterSuite() {
 		System.out.println("inside afterSuite");
