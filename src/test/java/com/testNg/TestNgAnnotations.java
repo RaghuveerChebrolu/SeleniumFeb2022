@@ -17,12 +17,12 @@ public class TestNgAnnotations {
 		System.out.println("inside testcase1");
 	}
 	
-	@Test(priority=-4)
+	@Test(priority=-4) 
 	public void aestcase2() {
 		System.out.println("inside testcase2");
 	}
 	
-	@Test(priority=0,dependsOnMethods = { "aestcase2" ,"Testcase4"})
+	@Test(priority=1,dependsOnMethods = { "aestcase2" ,"Testcase4"})
 	public void testcase3() {
 		System.out.println("inside testcase3");
 	}
@@ -32,14 +32,19 @@ public class TestNgAnnotations {
 		System.out.println("inside testcase4");
 	}
 	
-	@Test(priority=2)
+	@Test(priority=2,invocationCount=8)
 	public void testdase5() {
 		System.out.println("inside testcase5");
 	}
 	
-	@Test(priority=2)
+	@Test(priority=0)
 	public void Bestcase6() {
 		System.out.println("inside testcase6");
+	}
+	
+	@Test
+	public void Testcase7() {
+		System.out.println("inside testcase7");
 	}
 
 	@BeforeMethod
