@@ -57,10 +57,10 @@ public class TestNgAnnotations {
 		System.out.println("inside afterMethod");
 	}
 
-	/*@BeforeClass
+	@BeforeClass
 	public void beforeClass() {
 		System.out.println("inside beforeClass");
-	}*/
+	}
 
 	@AfterClass
 	public void afterClass() {
@@ -76,12 +76,12 @@ public class TestNgAnnotations {
 	public void afterTest() {
 		System.out.println("inside afterTest");
 	}
-/*
+
 	@BeforeSuite
 	public void beforeSuite() {
 		System.out.println("inside beforeSuite");
 	}
-*/
+
 	@AfterSuite
 	public void afterSuite() {
 		System.out.println("inside afterSuite");
