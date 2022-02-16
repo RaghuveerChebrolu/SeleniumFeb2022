@@ -19,61 +19,64 @@ import org.testng.annotations.AfterSuite;
 
 public class TestNg1 {
 	WebDriver driver;
-  @Test(priority=0)
-  public void ValidateGmoOnlineLoadedSuccessfully() {
-	  String title = driver.getTitle();
-	 // System.out.println(title);
-	  //Assert.assertEquals(title, "Welcome to Green Mountain Outpos");
-  }
-  
-  @Test(priority=1,dependsOnMethods = {"ValidateGmoOnlineLoadedSuccessfully"})
-  public void ValidatioEnterGmoOnline(){
-	  driver.findElement(By.name("bSubmit")).click();
-	  driver.findElement(By.name("QTY_TENTS")).clear();
-	 // driver.findElement(By.name("QTY_TENTS")).sendKeys("5");
-	  driver.findElement(By.name("bSubmit")).click();
-	  String unitPrice = driver.findElement(By.cssSelector("center:nth-child(1) table:nth-child(1) tbody:nth-child(1) tr:nth-child(2) > td:nth-child(4)")).getText();
-	  System.out.println(unitPrice);
-	  
-  }
-  
-  
-  
-  @BeforeMethod
-  public void beforeMethod() {
-  }
+	static String qty = "5";
 
-  @AfterMethod
-  public void afterMethod() {
-  }
+	@Test(priority = 0)
+	public void ValidateGmoOnlineLoadedSuccessfully() {
+		String title = driver.getTitle();
+		// System.out.println(title);
+		// Assert.assertEquals(title, "Welcome to Green Mountain Outpos");
+	}
 
-  @BeforeClass
-  public void beforeClass() {
-  }
+	@Test(priority = 1, dependsOnMethods = { "ValidateGmoOnlineLoadedSuccessfully" })
+	public void ValidatioEnterGmoOnline() {
+		driver.findElement(By.name("bSubmit")).click();
+		driver.findElement(By.name("QTY_TENTS")).clear();
+		driver.findElement(By.name("QTY_TENTS")).sendKeys(qty);
+		driver.findElement(By.name("bSubmit")).click();
+		String unitPrice = driver
+				.findElement(By.cssSelector(
+						"center:nth-child(1) table:nth-child(1) tbody:nth-child(1) tr:nth-child(2) > td:nth-child(4)"))
+				.getText();
+		System.out.println(unitPrice);
 
-  @AfterClass
-  public void afterClass() {
-  }
+	}
 
-  @BeforeTest
-  public void beforeTest() {
-  }
+	@BeforeMethod
+	public void beforeMethod() {
+	}
 
-  @AfterTest
-  public void afterTest() {
-  }
+	@AfterMethod
+	public void afterMethod() {
+	}
 
-  @BeforeSuite
-  public void beforeSuite() {
-	  System.out.println("inside beforeSuite");
-	  WebDriverManager.chromedriver().setup();
-	  driver = new ChromeDriver();
-	  driver.get("http://demo.borland.com/gmopost/");
-	  driver.manage().window().maximize();
-  }
+	@BeforeClass
+	public void beforeClass() {
+	}
 
-  @AfterSuite
-  public void afterSuite() {
-  }
+	@AfterClass
+	public void afterClass() {
+	}
+
+	@BeforeTest
+	public void beforeTest() {
+	}
+
+	@AfterTest
+	public void afterTest() {
+	}
+
+	@BeforeSuite
+	public void beforeSuite() {
+		System.out.println("inside beforeSuite");
+		WebDriverManager.chromedriver().setup();
+		driver = new ChromeDriver();
+		driver.get("http://demo.borland.com/gmopost/");
+		driver.manage().window().maximize();
+	}
+
+	@AfterSuite
+	public void afterSuite() {
+	}
 
 }
