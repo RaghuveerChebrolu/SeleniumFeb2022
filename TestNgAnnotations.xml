@@ -11,4 +11,26 @@
 			</class>
 		</classes>
 	</test> <!-- Test -->
+	<test name="Test">
+		<classes>
+			<class name="com.testNg.TestNgAnnotations" >
+			<methods>
+				<include name="testcase3"></include>
+				<include name="Bestcase6"></include>
+				
+			</methods>
+			</class>
+		</classes>
+	</test> 
+	<test name="Test">
+		<classes>
+			<class name="com.testNg.TestNgAnnotations" >
+			<methods>
+				<include name="testcase3"></include>
+				<include name="Bestcase6"></include>
+				
+			</methods>
+			</class>
+		</classes>
+	</test> 
 </suite> <!-- Suite -->
