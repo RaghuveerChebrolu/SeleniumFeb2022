@@ -4,8 +4,8 @@ package com.java.controlStatements;
 public class nestedSwitch {
 	public static void main(String args[]) {
 		// C - CSE, E - ECE, M - Mechanical
-		char branch = 'F';
-		int collegeYear = 2;
+		char branch = 'M';
+		int collegeYear = 3;
 		switch (collegeYear) {
 		case 1:
 			System.out.println("English, Maths, Science");

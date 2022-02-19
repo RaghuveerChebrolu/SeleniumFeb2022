@@ -4,11 +4,12 @@ package com.java.controlStatements;
 //in switch statement  
 public class enumSwitch {
 	public enum Day {
-		Sun, Mon, Tue, Wed, Thu, Fri, Sat
+		Sun, Mon, Tue, sunil,Wed, Thu, Fri, Sat , 
 	}
 
 	public static void main(String args[]) {
 		Day[] DayNow = Day.values();
+		int[] raghu = {8,9,3,};
 		for (Day Now : DayNow) {
 			switch (Now) {
 			case Sun:
@@ -31,6 +32,9 @@ public class enumSwitch {
 				break;
 			case Sat:
 				System.out.println("Saturday");
+				break;
+			default :
+				System.out.println("default block is executed");
 				break;
 			}
 		}
