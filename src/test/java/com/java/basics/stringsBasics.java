@@ -14,9 +14,9 @@ public class stringsBasics {
 		// Returns the character at ith index.
 		System.out.println("Character at 3rd position = " + s.charAt(3));
 
-		String str = "5467.84";
+		String str = "5467&84";
 		
-		String[] arr=str.split(".", 0); 
+		String[] arr=str.split("&"); 
 		for (String w : arr) {  
             System.out.println(w);  
         }  

@@ -24,6 +24,7 @@ public class TestNg1 {
 	@Test(priority = 0)
 	public void ValidateGmoOnlineLoadedSuccessfully() {
 		String title = driver.getTitle();
+		// below are the 
 		// System.out.println(title);
 		// Assert.assertEquals(title, "Welcome to Green Mountain Outpos");
 	}
@@ -42,6 +43,24 @@ public class TestNg1 {
 
 	}
 
+	@Test(priority=2)
+	public void ValidatePriceCalculationDomeTent(){
+		/*absolute xpath : going to start from / from html tag from starting of DOM
+		 *Relative Xpath : going to start from // from any where in DOM 
+		absolute xpath example : /html/body/form/table/tbody/tr[1]/td/div/center/table/tbody/tr[2]/td[4]
+		Relative xpath syntax : //tagname[@attributename = 'value']
+		Relative xpath example : //table[@border=1]/tbody/tr[2]/td[4] */
+		String UnitPrice = driver.findElement(By.xpath("//table[@border=1]/tbody/tr[2]/td[4]")).getText();
+		int UnitPricelength = UnitPrice.length();
+		System.out.println("UnitPrice:"+UnitPrice);
+		System.out.println("UnitPricelength:"+UnitPricelength);
+		String removeDollerFromUnixPrice = UnitPrice.substring(2);
+		System.out.println("removeDollerFromUnixPrice"+removeDollerFromUnixPrice);
+		Float calculatedPrice = Float.parseFloat(removeDollerFromUnixPrice)*Float.parseFloat(qty);
+		System.out.println("calculatedPrice:"+calculatedPrice);
+		
+		
+	}
 	@BeforeMethod
 	public void beforeMethod() {
 	}
