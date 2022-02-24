@@ -58,7 +58,12 @@ public class TestNg1 {
 		System.out.println("removeDollerFromUnixPrice"+removeDollerFromUnixPrice);
 		Float calculatedPrice = Float.parseFloat(removeDollerFromUnixPrice)*Float.parseFloat(qty);
 		System.out.println("calculatedPrice:"+calculatedPrice);
-		
+		String TotalPriceFromWebpagewithDoller = driver.findElement(By.xpath("//table[@border=1]/tbody/tr[2]/td[5]")).getText();
+		System.out.println("TotalPriveFromWebpage:"+TotalPriceFromWebpagewithDoller);
+		String ToatlPriceWebpage = TotalPriceFromWebpagewithDoller.substring(2).trim();
+		System.out.println("ToatlPriceWebpage:"+ToatlPriceWebpage);
+		Float ToatlPriceWebpageinFLoat=Float.parseFloat(ToatlPriceWebpage);
+		Assert.assertEquals(calculatedPrice,ToatlPriceWebpageinFLoat);
 		
 	}
 	@BeforeMethod
