@@ -2,6 +2,8 @@ package com.testNg;
 
 import org.testng.annotations.Test;
 
+import com.utility.libraryBusinessFunctions;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import org.testng.annotations.BeforeMethod;
@@ -27,10 +29,9 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.AfterSuite;
 
-public class TestNg2 {
-	WebDriver driver;
+public class TestNg2 extends libraryBusinessFunctions {
 	
-	Properties ObjProp;
+	libraryBusinessFunctions obj = new libraryBusinessFunctions();
 
 	@Test(priority = 0)
 	public void ValidateGmoOnlineLoadedSuccessfully() {
@@ -96,6 +97,8 @@ public class TestNg2 {
 		driver.navigate().forward();
 		
 	}
+	
+	
 	@BeforeMethod
 	public void beforeMethod() {
 		System.out.println("inside beforeMethod");
@@ -119,7 +122,8 @@ public class TestNg2 {
 	@BeforeTest
 	public void beforeTest() {
 		System.out.println("inside beforeTest");
-		launchBrowser();
+		
+		obj.launchBrowser();
 	}
 
 
@@ -132,61 +136,12 @@ public class TestNg2 {
 	@BeforeSuite
 	public void beforeSuite() {
 		System.out.println("inside beforeSuite");
-		ReadPropertyFile();
+		obj.ReadPropertyFile();
 	}
 
 
-	private void ReadPropertyFile() {
-		try {
-		System.out.println("reading proprties file");
-		System.out.println(System.getProperty("user.dir"));
-		ObjProp =  new Properties();
-		File obj = new File(System.getProperty("user.dir")+"//src//test//resources//ConfigProperty.properties");
-		/*
-		 * FileInputStream -> class used for reading from a file 
-		 * FileOutPutStream -> class used for wrting to a file
-		 */
-		FileInputStream objFileInput = new FileInputStream(obj);
-		ObjProp.load(objFileInput);
-		
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
 	
-	private void launchBrowser() {
-		String browser = ObjProp.getProperty("browser");
-		switch(browser) {
-		case "IE":
-			WebDriverManager.iedriver().setup();
-			driver = new InternetExplorerDriver();
-			break;
-		case "Firefox":
-			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver();
-			break;
-		case "Chrome":
-			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
-			break;
-		case "Edge":
-			WebDriverManager.edgedriver().setup();
-			driver = new EdgeDriver();
-			break;	
-		default :
-			System.out.println("headless");
-		}
-		driver.get(ObjProp.getProperty("GmoOnline"));
-		driver.manage().window().maximize();
-		/*
-		 * implicit Wait : Global waiting mechanism applicable for all web Elements
-		 * declared under implicit wait. script is going to wait until web element is
-		 * Recognized upto maximum of 60 seconds. If not recognised it will throw noSuchElement Exception Timeout Exception 
-		 */
-		driver.manage().timeouts().implicitlyWait(60,TimeUnit.SECONDS);
-		
-	}
+	
 
 	@AfterSuite
 	public void afterSuite() {

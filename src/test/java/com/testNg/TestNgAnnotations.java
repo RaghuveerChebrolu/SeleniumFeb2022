@@ -80,6 +80,8 @@ public class TestNgAnnotations {
 	@BeforeSuite
 	public void beforeSuite() {
 		System.out.println("inside beforeSuite");
+		TestNg2 obj = new TestNg2();
+		obj.launchBrowser();
 	}
 
 	@AfterSuite
