@@ -36,7 +36,9 @@ public class ValidatingAlerts extends libraryBusinessFunctions{
 	public void ValidatingAlerts() throws InterruptedException {
 		System.out.println("inside ValidatingAlerts");
 		driver.navigate().to(ObjProp.getProperty("AlertURL"));
+		waitForPageToLoad();
 		driver.findElement(By.id("alertButton")).click();
+		Thread.sleep(15000);
 		Alert objAlert = driver.switchTo().alert();
 		String TextOfAlert = objAlert.getText();
 		System.out.println("TextOfAlert:"+TextOfAlert);
@@ -45,13 +47,38 @@ public class ValidatingAlerts extends libraryBusinessFunctions{
 		
 		//timer Alert
 		
-		driver.findElement(By.id("timerAlertButton")).click();
+		/*
+		 * driver.findElement(By.id("timerAlertButton")).click(); Thread.sleep(15000);
+		 * Alert objtimerAlertButton = driver.switchTo().alert(); String
+		 * TextOftimerAlert = objtimerAlertButton.getText();
+		 * System.out.println("TextOftimerAlert:"+TextOftimerAlert);
+		 * Assert.assertEquals(TextOftimerAlert,ObjProp.getProperty("Alert2Text"));
+		 * objAlert.accept();
+		 */
+		
+		//confirm Button Alert
+		driver.findElement(By.id("confirmButton")).click();
 		Thread.sleep(8000);
-		Alert objtimerAlertButton = driver.switchTo().alert();
-		String TextOftimerAlert = objtimerAlertButton.getText();
-		System.out.println("TextOftimerAlert:"+TextOftimerAlert);
-		Assert.assertEquals(TextOftimerAlert,ObjProp.getProperty("Alert3Result"));
-		objAlert.accept();
+		Alert objconfirmButton = driver.switchTo().alert();
+		String AlertMessage = objconfirmButton.getText();
+		System.out.println("AlertMessage:"+AlertMessage);
+		Assert.assertEquals(AlertMessage,"Do you confirm action?");
+		objconfirmButton.dismiss();
+		String TextAppear = driver.findElement(By.id("confirmResult")).getText();
+		System.out.println("TextAppear:"+TextAppear);
+		Assert.assertEquals(TextAppear,ObjProp.getProperty("Alert3ResultCancel"));
+		
+		//PromptButton Alert
+		driver.findElement(By.id("promtButton")).click();
+		Thread.sleep(8000); //static wait : halting the execution upto specified seconds
+		Alert promtButtonAlert = driver.switchTo().alert();
+		promtButtonAlert.sendKeys("I am doing good");
+		Thread.sleep(4000);
+		promtButtonAlert.accept();
+		String TextPropmptResult = driver.findElement(By.id("promptResult")).getText();
+		System.out.println("TextPropmptResult"+TextPropmptResult);
+		Assert.assertEquals(TextPropmptResult,ObjProp.getProperty("Alert4Result"));
+		
 		
 	}
 	

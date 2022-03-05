@@ -5,11 +5,14 @@ import java.io.FileInputStream;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -69,6 +72,17 @@ public class libraryBusinessFunctions {
 		 */
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
+	}
+	
+	public static void waitForPageToLoad() {
+		ExpectedCondition<Boolean> pageLoadCondition = new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver driver) {
+				return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+			}
+		};
+		// explicit wait -> Applicable for one webEllement
+		WebDriverWait wait = new WebDriverWait(driver, 120);// 120 seconds
+		wait.until(pageLoadCondition);
 	}
 
 }
