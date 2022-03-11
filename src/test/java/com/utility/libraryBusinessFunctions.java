@@ -98,7 +98,7 @@ public class libraryBusinessFunctions {
 		try {
 		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String dateName = new SimpleDateFormat("yyyyMMDDhhmmss").format(new Date());
-		String destination = System.getProperty("user.dir") + "//ScreenShot//" + dateName + "captured.jpeg";
+		String destination = System.getProperty("user.dir") + "//ScreenShots//" + dateName + "captured.jpeg";
 		FileUtils.copyFile(src, new File(destination));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

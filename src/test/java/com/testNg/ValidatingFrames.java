@@ -41,9 +41,11 @@ public class ValidatingFrames extends libraryBusinessFunctions{
 		//Below line is for switching control from web page to iframe
 		driver.switchTo().frame("singleframe");
 		driver.findElement(By.xpath("//input[@type='text']")).sendKeys("Hello How are you Doing ?");
-		
+		TakeScreenShot();
 		//Below line is for coming out from the frame.
 		driver.switchTo().defaultContent();
+		
+		//iframe with in iframe
 		driver.findElement(By.xpath("//a[contains(text(),'Iframe with in an Iframe')]")).click();
 		WebElement FrameElement =  driver.findElement(By.xpath("//iframe[@src='MultipleFrames.html']"));
 		driver.switchTo().frame(FrameElement);
@@ -52,6 +54,7 @@ public class ValidatingFrames extends libraryBusinessFunctions{
 		driver.findElement(By.xpath("//input[@type='text']")).sendKeys("Hello I am inside singleFrame on MultipleFrames");
 		//Below line is used to come out of the frame
 		driver.switchTo().defaultContent();
+		TakeScreenShot();
 	}
 	
 	
