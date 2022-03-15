@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -43,7 +44,10 @@ public class TestNg2 extends libraryBusinessFunctions {
 
 	@Test(priority = 1, dependsOnMethods = { "ValidateGmoOnlineLoadedSuccessfully" })
 	public void ValidatioEnterGmoOnline() {
-		driver.findElement(By.name("bSubmit")).click();
+		WebElement element = driver.findElement(By.name("bSubmit"));
+		TakeScreenShotofSpecifiedWebElement(element);
+		element.click();
+		
 		Order3PersonDomeTent();
 		OrderExternalFrameBackpack();
 		driver.findElement(By.name("bSubmit")).click();
@@ -63,6 +67,7 @@ public class TestNg2 extends libraryBusinessFunctions {
 	public void OrderExternalFrameBackpack() {
 		driver.findElement(By.name("QTY_BACKPACKS")).clear();
 		driver.findElement(By.name("QTY_BACKPACKS")).sendKeys(ObjProp.getProperty("QTY_BackPacks"));
+		TakeScreenShotofSpecifiedWebElement(driver.findElement(By.name("QTY_BACKPACKS")));
 	}
 	
 	public void OrderGlacierSunGlasses() {

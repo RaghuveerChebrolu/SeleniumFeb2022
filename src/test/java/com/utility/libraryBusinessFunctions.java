@@ -13,6 +13,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -97,6 +98,21 @@ public class libraryBusinessFunctions {
 	public static void TakeScreenShot() {
 		try {
 		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		String dateName = new SimpleDateFormat("yyyyMMDDhhmmss").format(new Date());
+		String destination = System.getProperty("user.dir") + "//ScreenShots//" + dateName + "captured.jpeg";
+		FileUtils.copyFile(src, new File(destination));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/* Author : Raghuveer
+	 * This method is used to take screen shot and store the screen shots in side ScreenShot folder
+	 */
+	public static void TakeScreenShotofSpecifiedWebElement(WebElement element) {
+		try {
+		File src = element.getScreenshotAs(OutputType.FILE);
 		String dateName = new SimpleDateFormat("yyyyMMDDhhmmss").format(new Date());
 		String destination = System.getProperty("user.dir") + "//ScreenShots//" + dateName + "captured.jpeg";
 		FileUtils.copyFile(src, new File(destination));
