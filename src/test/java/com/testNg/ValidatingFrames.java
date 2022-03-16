@@ -2,6 +2,7 @@ package com.testNg;
 
 import org.testng.annotations.Test;
 
+import com.utility.ObjectRepository;
 import com.utility.libraryBusinessFunctions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -39,19 +40,20 @@ public class ValidatingFrames extends libraryBusinessFunctions{
 		driver.navigate().to(ObjProp.getProperty("FramesURL"));
 		waitForPageToLoad();
 		//Below line is for switching control from web page to iframe
-		driver.switchTo().frame("singleframe");
-		driver.findElement(By.xpath("//input[@type='text']")).sendKeys("Hello How are you Doing ?");
+		driver.switchTo().frame(ObjectRepository.singleFrameID);
+		//driver.findElement(By.xpath(ObjectRepository.FrameTextbox)).sendKeys("Hello How are you Doing ?");
+		libraryBusinessFunctions.FindElement(ObjectRepository.FrameTextbox).sendKeys("Hello How are you Doing ?");
 		TakeScreenShot();
 		//Below line is for coming out from the frame.
 		driver.switchTo().defaultContent();
 		
 		//iframe with in iframe
-		driver.findElement(By.xpath("//a[contains(text(),'Iframe with in an Iframe')]")).click();
-		WebElement FrameElement =  driver.findElement(By.xpath("//iframe[@src='MultipleFrames.html']"));
+		driver.findElement(By.xpath(ObjectRepository.FrameWithInIframe)).click();
+		WebElement FrameElement =  driver.findElement(By.xpath(ObjectRepository.Multipleframe));
 		driver.switchTo().frame(FrameElement);
-		WebElement singleFrameElement  = driver.findElement(By.xpath("//iframe[@src='SingleFrame.html']"));
+		WebElement singleFrameElement  = driver.findElement(By.xpath(ObjectRepository.Singleframe));
 		driver.switchTo().frame(singleFrameElement);
-		driver.findElement(By.xpath("//input[@type='text']")).sendKeys("Hello I am inside singleFrame on MultipleFrames");
+		driver.findElement(By.xpath(ObjectRepository.FrameTextbox)).sendKeys("Hello I am inside singleFrame on MultipleFrames");
 		//Below line is used to come out of the frame
 		driver.switchTo().defaultContent();
 		TakeScreenShot();

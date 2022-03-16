@@ -36,6 +36,9 @@ public class TestNg2 extends libraryBusinessFunctions {
 
 	@Test(priority = 0)
 	public void ValidateGmoOnlineLoadedSuccessfully() {
+		int i=1;
+		System.out.println (( ++i + ++i )+( --i + i++ ));
+		
 		String title = driver.getTitle();
 		// below are the 
 		 System.out.println(title);
@@ -141,6 +144,8 @@ public class TestNg2 extends libraryBusinessFunctions {
 	@BeforeSuite
 	public void beforeSuite() {
 		System.out.println("inside beforeSuite");
+		int i=1;
+		System.out.println (( ++i + ++i )+( --i + i++ ));
 		obj.ReadPropertyFile();
 	}
 

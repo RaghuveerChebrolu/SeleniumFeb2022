@@ -7,8 +7,9 @@
 		<parameter name="UserName" value="demo" />
 		<parameter name="Passcode" value="PASSWORD" />
 		<classes>
-			<class name="com.testNg.TestngParamters">
-			</class>
+			<class name="com.testNg.TestngParamters"/>
+			<class name="com.testNg.ValidatingFrames"/>
+		
 		</classes>
 	</test> <!-- Test -->
 	
