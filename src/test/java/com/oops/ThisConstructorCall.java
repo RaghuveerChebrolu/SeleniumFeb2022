@@ -1,12 +1,13 @@
 package com.oops;
 
-class A123 {
-	A123() {
+class car {
+	car() {
 		System.out.println("hello a");
 		
 	}
 
-	A123(int x) {
+	car(int x) {
+		//System.out.println("hi");//complie time error
 		this();
 		System.out.println(x);
 	}
@@ -14,6 +15,6 @@ class A123 {
 
 class ThisConstructorCall {
 	public static void main(String args[]) {
-		A123 a = new A123(10);
+		car a = new car(10);
 	}
 }
