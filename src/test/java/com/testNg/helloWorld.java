@@ -1,5 +1,7 @@
 package com.testNg;
 
+import com.utility.libraryBusinessFunctions;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class helloWorld {
@@ -23,7 +25,7 @@ public class helloWorld {
 		obj.add(4, 6);
 		
 		WebDriverManager.chromedriver().setup();
-		
+		libraryBusinessFunctions.launchBrowser();
 	}
 
 }

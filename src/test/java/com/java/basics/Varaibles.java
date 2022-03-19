@@ -1,5 +1,8 @@
 package com.java.basics;
 
+import org.testng.asserts.SoftAssert;
+
+
 public class Varaibles {
 	static int m = 100;// static variable
 	int data;// instance variable
@@ -18,7 +21,6 @@ public class Varaibles {
 		System.out.println(v1.data);
 		v1.method();
 		System.out.println(Varaibles.m);
-
 	}
 
 }

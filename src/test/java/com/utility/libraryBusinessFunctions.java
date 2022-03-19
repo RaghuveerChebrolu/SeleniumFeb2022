@@ -29,7 +29,7 @@ public class libraryBusinessFunctions {
 	public static WebDriver driver;
 	public static Properties ObjProp;
 
-	public void ReadPropertyFile() {
+	public static void ReadPropertyFile() {
 		try {
 			System.out.println("reading proprties file");
 			System.out.println(System.getProperty("user.dir"));
@@ -48,7 +48,7 @@ public class libraryBusinessFunctions {
 
 	}
 
-	public void launchBrowser() {
+	public static void launchBrowser() {
 		String browser = ObjProp.getProperty("browser");
 		switch (browser) {
 		case "IE":

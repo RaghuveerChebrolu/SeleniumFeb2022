@@ -38,7 +38,7 @@ public class ValidatingFrames extends libraryBusinessFunctions{
 	public void ValidatingFrames() throws InterruptedException {
 		System.out.println("inside ValidatingFrames");
 		driver.navigate().to(ObjProp.getProperty("FramesURL"));
-		waitForPageToLoad();
+		libraryBusinessFunctions.TakeScreenShot();
 		//Below line is for switching control from web page to iframe
 		driver.switchTo().frame(ObjectRepository.singleFrameID);
 		//driver.findElement(By.xpath(ObjectRepository.FrameTextbox)).sendKeys("Hello How are you Doing ?");
