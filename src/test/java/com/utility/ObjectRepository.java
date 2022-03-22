@@ -1,5 +1,7 @@
 package com.utility;
 
+import org.openqa.selenium.By;
+
 public class ObjectRepository {
 
 	public static String singleFrameID = "singleframe";
@@ -8,5 +10,5 @@ public class ObjectRepository {
 	public static String Singleframe = constants.xpath+"&"+"//iframe[@src='SingleFrame.html']";
 	public static String Multipleframe = constants.xpath+"&"+"//iframe[@src='MultipleFrames.html']";
 	
-	
+	By QTY_TENTS = By.name("QTY_TENTS");
 }

@@ -25,7 +25,7 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class libraryBusinessFunctions {
+public class libraryBusinessFunctions  {
 	public static WebDriver driver;
 	public static Properties ObjProp;
 
