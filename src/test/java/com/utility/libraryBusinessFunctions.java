@@ -3,7 +3,7 @@ package com.utility;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -150,5 +150,8 @@ public class libraryBusinessFunctions  {
 		return driver.findElement(search);
 	}
 	
+	public static void find_ElementAndClick(By locator) {
+		driver.findElement(locator).click();
+	}
 
 }

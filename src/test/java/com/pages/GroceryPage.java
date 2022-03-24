@@ -11,7 +11,6 @@ public class GroceryPage {
 	
 	public GroceryPage(WebDriver driver) {
 		this.driver = driver;
-
 	}
 
 	public static String clickcurrentLocation(){

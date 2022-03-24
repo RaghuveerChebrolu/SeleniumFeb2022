@@ -3,7 +3,9 @@ package com.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class HomePage {
+import com.utility.libraryBusinessFunctions;
+
+public class HomePage extends libraryBusinessFunctions{
 	public static WebDriver driver;
 
 	static By Grocery = By.xpath("(//img[@class='_396cs4  _3exPp9'])[2]");
@@ -26,6 +28,7 @@ public class HomePage {
 	public static void clickTravel(){
 		driver.findElement(Travel).click();
 	}
+	
 	
 	
 }
