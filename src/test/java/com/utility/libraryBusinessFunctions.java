@@ -3,7 +3,7 @@ package com.utility;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -28,7 +28,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class libraryBusinessFunctions  {
 	public static WebDriver driver;
 	public static Properties ObjProp;
-
+	public static JavascriptExecutor js = (JavascriptExecutor)driver;
+	
 	public static void ReadPropertyFile() {
 		try {
 			System.out.println("reading proprties file");
@@ -41,7 +42,7 @@ public class libraryBusinessFunctions  {
 			 */
 			FileInputStream objFileInput = new FileInputStream(obj);
 			ObjProp.load(objFileInput);
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -70,7 +71,7 @@ public class libraryBusinessFunctions  {
 		default:
 			System.out.println("headless");
 		}
-		driver.get(ObjProp.getProperty("GmoOnline"));
+		driver.get(ObjProp.getProperty("google"));
 		driver.manage().window().maximize();
 		/*
 		 * implicit Wait : Global waiting mechanism applicable for all web Elements
@@ -153,5 +154,21 @@ public class libraryBusinessFunctions  {
 	public static void find_ElementAndClick(By locator) {
 		driver.findElement(locator).click();
 	}
-
+	
+	public static void ScrollDownByPixels(int x){
+		js.executeScript("window.scrollBy(0,"+x+")");
+	}
+	
+	public static void ScrollUpByPixels(int x){
+		js.executeScript("window.scrollBy(0,"+"-"+x+")");
+	}
+	
+	public static void ScrollRightByPixels(int x){
+		js.executeScript("window.scrollBy("+x+",0)");
+	}
+	
+	public static void ScrollLeftByPixels(int x){
+		js.executeScript("window.scrollBy("+"-"+x+",0)");
+	}
+	
 }

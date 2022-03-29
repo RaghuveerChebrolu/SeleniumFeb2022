@@ -15,7 +15,12 @@ public class ObjectRepository {
 	public static String AboutMeInNewwindow = constants.xpath+"&"+"(//a[contains(text(),'About Me')])[1]";
 	public static String MouseOperationRightClick = constants.xpath+"&"+"/html[1]/body[1]/div[1]/section[1]/div[1]/div[1]/div[1]/p[1]/span[1]";
 	public static String MouseOperationCopyFromRightClickMenu = constants.xpath+"&"+"//ul[@class='context-menu-list context-menu-root']/li[3]";
+	public static String MouseOperationFrameOfDoubleCLick = constants.xpath+"&"+"//iframe";
+	public static String MouseOperationDoubleClick = constants.xpath+"&"+"//span[contains(text(),'Double click')]/preceding-sibling::div";
 	
+	public static String MouseOperationFrameforDragAndDrop =constants.xpath+"&"+ "//iframe[@class='demo-frame']";
+	public static String MouseOperationDragID = constants.ID+"&"+"draggable";
+	public static String MouseOperationDropID = constants.ID+"&"+"droppable";
 	
 	By QTY_TENTS = By.name("QTY_TENTS");
 }
