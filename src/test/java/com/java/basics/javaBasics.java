@@ -1,5 +1,7 @@
 package com.java.basics;
 
+import com.utility.libraryBusinessFunctions;
+
 public class javaBasics {
 	String s= "hi";//instance variable. It is not declared as static
 	static int val=18;
@@ -25,5 +27,7 @@ public class javaBasics {
 		javaBasics obj = new javaBasics();
 		obj.add();
 		obj.sub();
+		
+		//libraryBusinessFunctions.TakeScreenShot();
 	}
 }

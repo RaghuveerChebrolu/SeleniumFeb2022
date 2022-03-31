@@ -22,5 +22,8 @@ public class ObjectRepository {
 	public static String MouseOperationDragID = constants.ID+"&"+"draggable";
 	public static String MouseOperationDropID = constants.ID+"&"+"droppable";
 	
+	public static String WebTableAllLastNames = constants.xpath+"&"+"//table[@id='example']/tbody/tr/td[3]";
+	
+	
 	By QTY_TENTS = By.name("QTY_TENTS");
 }

@@ -52,6 +52,10 @@ public class flipkart extends libraryBusinessFunctions {
 		String title = GroceryPage.clickcurrentLocation();
 		Assert.assertEquals(title, ObjProp.getProperty(""));
 		
+		driver.findElement(By.xpath("(//i[@class='a-icon a-icon-checkbox'])[11]")).click();
+		waitForPageToLoad();
+		Boolean ckecboxFlag = driver.findElement(By.xpath("(//i[@class='a-icon a-icon-checkbox'])[11]")).isSelected();
+		
 	}
 
 	
