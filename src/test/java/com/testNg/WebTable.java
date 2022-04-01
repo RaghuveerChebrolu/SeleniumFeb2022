@@ -55,7 +55,8 @@ public class WebTable extends libraryBusinessFunctions {
 			  JavascriptExecutor js = (JavascriptExecutor)driver;
 			  js.executeScript("window.scrollBy(0,600)");
 			 List<WebElement> AllLast_Names = libraryBusinessFunctions.FindElements(ObjectRepository.WebTableAllLastNames);
-			  for(int i=1;i<=AllLast_Names.size();i++) {
+			 int count = AllLast_Names.size(); 
+			 for(int i=1;i<=count;i++) {
 				String IndividualLasName = driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[3]")).getText();
 				  System.out.println("IndividualLasName for "+ i +" row is "+ IndividualLasName );
 				  if(IndividualLasName.equals("Vance")) {
@@ -70,6 +71,7 @@ public class WebTable extends libraryBusinessFunctions {
 					  System.out.println("Office "+Office);
 					  System.out.println("StartDate "+StartDate);
 					  System.out.println("Salary "+Salary);
+					  break;
 				  }
 			  }
 			

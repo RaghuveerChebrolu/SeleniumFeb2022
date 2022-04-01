@@ -23,6 +23,8 @@ public class ObjectRepository {
 	public static String MouseOperationDropID = constants.ID+"&"+"droppable";
 	
 	public static String WebTableAllLastNames = constants.xpath+"&"+"//table[@id='example']/tbody/tr/td[3]";
+	public static String FileUploadBrowseButton = constants.xpath+"&"+"//input[@id='input-4']/preceding-sibling::span";
+	
 	
 	
 	By QTY_TENTS = By.name("QTY_TENTS");
