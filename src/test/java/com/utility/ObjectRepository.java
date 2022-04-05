@@ -24,8 +24,8 @@ public class ObjectRepository {
 	
 	public static String WebTableAllLastNames = constants.xpath+"&"+"//table[@id='example']/tbody/tr/td[3]";
 	public static String FileUploadBrowseButton = constants.xpath+"&"+"//input[@id='input-4']/preceding-sibling::span";
-	
-	
+	public static String FileDownLoad500KB = constants.xpath+"&"+"(//td[@class='text-right file-link'])[2]/a";
+
 	
 	By QTY_TENTS = By.name("QTY_TENTS");
 }

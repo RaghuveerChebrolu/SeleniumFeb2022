@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -17,6 +19,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -63,7 +66,16 @@ public class libraryBusinessFunctions  {
 			break;
 		case "Chrome":
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			//driver = new ChromeDriver();
+			ChromeOptions objChromeOptions = new ChromeOptions();
+			objChromeOptions.setAcceptInsecureCerts(true);
+			// driver= new ChromeDriver(objChromeOptions);
+			Map<String, Object> chromePrefs = new HashMap<String, Object>();
+			chromePrefs.put("profile.default_content_settings.popups", 0);
+			chromePrefs.put("download.prompt_for_download", false);
+			chromePrefs.put("download.default_directory", System.getProperty("user.dir"));
+			objChromeOptions.setExperimentalOption("prefs", chromePrefs);
+			driver = new ChromeDriver(objChromeOptions);
 			break;
 		case "Edge":
 			WebDriverManager.edgedriver().setup();
@@ -72,7 +84,7 @@ public class libraryBusinessFunctions  {
 		default:
 			System.out.println("headless");
 		}
-		driver.get(ObjProp.getProperty("google"));
+		driver.get(ObjProp.getProperty("GmoOnline"));
 		driver.manage().window().maximize();
 		/*
 		 * implicit Wait : Global waiting mechanism applicable for all web Elements
