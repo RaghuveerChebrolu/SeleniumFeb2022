@@ -26,6 +26,17 @@ public class ObjectRepository {
 	public static String FileUploadBrowseButton = constants.xpath+"&"+"//input[@id='input-4']/preceding-sibling::span";
 	public static String FileDownLoad500KB = constants.xpath+"&"+"(//td[@class='text-right file-link'])[2]/a";
 
+	public static String DataDrivenFirstName = constants.xpath+"&"+"//input[@placeholder='First Name']";
+	public static String DataDrivenLasttName = constants.xpath+"&"+"//input[@placeholder='Last Name']";
+	public static String DataDrivenAddress = constants.xpath+"&"+"//textarea[@ng-model='Adress']";
+	public static String DataDrivenEmail = constants.xpath+"&"+"//input[@type='email']";
+	public static String DataDrivenPhone = constants.xpath+"&"+"//input[@type='tel']";
+	
+	public static String DataDrivenGenderMale = constants.xpath+"&"+"//input[@value='Male']";
+	public static String DataDrivenGenderFeMale = constants.xpath+"&"+"//input[@value='FeMale']";
+	
+
+	
 	
 	By QTY_TENTS = By.name("QTY_TENTS");
 }
