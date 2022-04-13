@@ -25,6 +25,7 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,7 +63,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.AfterSuite;
 
 public class DataDriven extends libraryBusinessFunctions {
-	HashMap<String,String> hmap = new HashMap<String,String>();
+	
 	@Test(priority = 1)
 	public void ValidatingDataDriven() {
 		try {
@@ -81,6 +82,7 @@ public class DataDriven extends libraryBusinessFunctions {
 			int NumberOfRows = objXSSFSheet.getLastRowNum();
 			System.out.println("NumberOfRows: "+NumberOfRows);
 			for (int row =1; row<=NumberOfRows;row++) {
+				if(hmap.get("RunMode").equals("Yes")){
 				hmap = ReadTestDataFromExcel(objXSSFSheet,row);
 				
 				WebElement Firstname = libraryBusinessFunctions.FindElement(ObjectRepository.DataDrivenFirstName);
@@ -107,51 +109,85 @@ public class DataDriven extends libraryBusinessFunctions {
 					libraryBusinessFunctions.FindElement(ObjectRepository.DataDrivenGenderFeMale).click();
 				}
 				
+				if(hmap.get("Hobbies").equalsIgnoreCase("cricket")) {
+					libraryBusinessFunctions.FindElement(ObjectRepository.DataDrivenHobbiesCricket).click();
+				}else if(hmap.get("Hobbies").equalsIgnoreCase("movies")) {
+					libraryBusinessFunctions.FindElement(ObjectRepository.DataDrivenHobbiesMovies).click();
+				}else if(hmap.get("Hobbies").equalsIgnoreCase("hockey")) {
+					libraryBusinessFunctions.FindElement(ObjectRepository.DataDrivenHobbiesHockey).click();
+				}
+				
+				JavascriptExecutor js = (JavascriptExecutor)driver;
+				js.executeScript("window.scrollBy(0,500)");
+				
+				if(row>1) {
+					libraryBusinessFunctions.FindElement(ObjectRepository.CloseIconSkillsField).click();
+				}
+				
+				libraryBusinessFunctions.FindElement(ObjectRepository.DataDrivenLanguages).click();
+				List<WebElement> AllLanguages = libraryBusinessFunctions.FindElements(ObjectRepository.DataDrivenAllLanguages);
+				String LanguagesDropDownValue = hmap.get("Languages");
+				SelectValueFromDropDown(AllLanguages,LanguagesDropDownValue);
 				
 				
+				libraryBusinessFunctions.FindElement(ObjectRepository.DataDrivenSkillsField).click();
+				
+				libraryBusinessFunctions.FindElement(ObjectRepository.DataDrivenskills).click();
+				List<WebElement> AllSkills = libraryBusinessFunctions.FindElements(ObjectRepository.DataDrivenAllSkills);
+				String SkillsDropDownValue = hmap.get("Skills");
+				SelectValueFromDropDown(AllSkills,SkillsDropDownValue);
+				
+				libraryBusinessFunctions.FindElement(ObjectRepository.DataDrivenSelectCountry).click();
+				libraryBusinessFunctions.FindElement(ObjectRepository.DataDrivenTextBox_SelectCountry).sendKeys(hmap.get("SelectCountry"));
+				Robot objRobot = new Robot();
+				objRobot.keyPress(KeyEvent.VK_ENTER);
+				objRobot.keyRelease(KeyEvent.VK_ENTER);
+				
+				libraryBusinessFunctions.FindElement(ObjectRepository.DataDrivenLDOB_Year).click();
+				List<WebElement> AllYears = libraryBusinessFunctions.FindElements(ObjectRepository.DataDrivenDOB_AllYears);
+				String YearDropDownValue = hmap.get("DOB_YY");
+				SelectValueFromDropDown(AllYears,YearDropDownValue);
+				
+				libraryBusinessFunctions.FindElement(ObjectRepository.DataDrivenLDOB_Month).click();
+				List<WebElement> AllMonths = libraryBusinessFunctions.FindElements(ObjectRepository.DataDrivenDOB_AllMonths);
+				String MnthDropDownValue = hmap.get("DOB_MM");
+				SelectValueFromDropDown(AllMonths,MnthDropDownValue);
+				
+				libraryBusinessFunctions.FindElement(ObjectRepository.DataDrivenLDOB_Day).click();
+				List<WebElement> AllDays = libraryBusinessFunctions.FindElements(ObjectRepository.DataDrivenDOB_AllDays);
+				String DayDropDownValue = hmap.get("DOB_DD");
+				SelectValueFromDropDown(AllDays,DayDropDownValue);
+				
+				libraryBusinessFunctions.FindElement(ObjectRepository.DataDriven_Password).clear();
+				libraryBusinessFunctions.FindElement(ObjectRepository.DataDriven_Password).sendKeys(hmap.get("Password"));
+				
+				libraryBusinessFunctions.FindElement(ObjectRepository.DataDriven_ConfirmPassword).clear();
+				libraryBusinessFunctions.FindElement(ObjectRepository.DataDriven_ConfirmPassword).sendKeys(hmap.get("confirmPwd"));
+			
+			
+				FileOutputStream objFileOutput = new FileOutputStream(objFile);
+				WriteToExcelFile(objXSSFWorkBook,objXSSFSheet,row);
+				objXSSFWorkBook.write(objFileOutput);
 			}
-			
-			/*
-			 * for (Map.Entry m : hmap.entrySet()) { System.out.println(m.getKey() +
-			 * ":"+m.getValue()); }
-			 */
-			
+			else {
+				int count = row+1;
+				System.out.println("RunMode in test data excel file is not marked as Yes for row number :"+count);
+			}
+			}
+			objXSSFWorkBook.close();
+			objFileInput.close();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public HashMap<String, String> ReadTestDataFromExcel(XSSFSheet objXSSFSheet, int row) {
-		DataFormatter ObjFormatter = new DataFormatter();
-		hmap.put("RunMode", objXSSFSheet.getRow(row).getCell(0).getStringCellValue());
-		hmap.put("TestCaseName", objXSSFSheet.getRow(row).getCell(1).getStringCellValue());
-		hmap.put("FirstName", objXSSFSheet.getRow(row).getCell(2).getStringCellValue());
-		hmap.put("LastName", objXSSFSheet.getRow(row).getCell(3).getStringCellValue());
-		hmap.put("Address", objXSSFSheet.getRow(row).getCell(4).getStringCellValue());
-		
-		hmap.put("EmailAddress", objXSSFSheet.getRow(row).getCell(5).getStringCellValue());
-		hmap.put("PhoneNumber", ObjFormatter.formatCellValue(objXSSFSheet.getRow(row).getCell(6)));
-		hmap.put("Gender", objXSSFSheet.getRow(row).getCell(7).getStringCellValue());
-		hmap.put("Hobbies", objXSSFSheet.getRow(row).getCell(8).getStringCellValue());
-		hmap.put("Languages", objXSSFSheet.getRow(row).getCell(9).getStringCellValue());
-		
-		hmap.put("Skills", objXSSFSheet.getRow(row).getCell(10).getStringCellValue());
-		hmap.put("Country", objXSSFSheet.getRow(row).getCell(11).getStringCellValue());
-		hmap.put("SelectCountry", objXSSFSheet.getRow(row).getCell(12).getStringCellValue());
-		
-		hmap.put("DOB_YY", ObjFormatter.formatCellValue(objXSSFSheet.getRow(row).getCell(13)));
-		
-		hmap.put("DOB_MM", objXSSFSheet.getRow(row).getCell(14).getStringCellValue());
-		
-		hmap.put("DOB_DD",  ObjFormatter.formatCellValue(objXSSFSheet.getRow(row).getCell(15)));
-		
-		hmap.put("Password", objXSSFSheet.getRow(row).getCell(16).getStringCellValue());
-		hmap.put("confirmPassword", objXSSFSheet.getRow(row).getCell(17).getStringCellValue());
-		
 
-		return hmap;
-	}
+	
+
+
+
+
 
 	@BeforeMethod
 	public void beforeMethod() {
