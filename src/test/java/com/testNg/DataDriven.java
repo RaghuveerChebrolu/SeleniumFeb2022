@@ -82,9 +82,9 @@ public class DataDriven extends libraryBusinessFunctions {
 			int NumberOfRows = objXSSFSheet.getLastRowNum();
 			System.out.println("NumberOfRows: "+NumberOfRows);
 			for (int row =1; row<=NumberOfRows;row++) {
-				if(hmap.get("RunMode").equals("Yes")){
+			
 				hmap = ReadTestDataFromExcel(objXSSFSheet,row);
-				
+				if(hmap.get("RunMode").equalsIgnoreCase("Yes")){
 				WebElement Firstname = libraryBusinessFunctions.FindElement(ObjectRepository.DataDrivenFirstName);
 				WebDriverWait wait = new WebDriverWait(driver,60);
 				wait.until(ExpectedConditions.elementToBeClickable(Firstname));
@@ -169,7 +169,7 @@ public class DataDriven extends libraryBusinessFunctions {
 				WriteToExcelFile(objXSSFWorkBook,objXSSFSheet,row);
 				objXSSFWorkBook.write(objFileOutput);
 			}
-			else {
+			else if(hmap.get("RunMode").equalsIgnoreCase("No")){
 				int count = row+1;
 				System.out.println("RunMode in test data excel file is not marked as Yes for row number :"+count);
 			}

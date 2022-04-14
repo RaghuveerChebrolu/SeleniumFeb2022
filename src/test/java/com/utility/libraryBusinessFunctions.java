@@ -31,6 +31,11 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class libraryBusinessFunctions  {
@@ -38,6 +43,19 @@ public class libraryBusinessFunctions  {
 	public static Properties ObjProp;
 	public static JavascriptExecutor js = (JavascriptExecutor)driver;
 	public static HashMap<String,String> hmap = new HashMap<String,String>();
+	public static ExtentHtmlReporter ExtenthtmlReporter;
+	public static ExtentReports ExtentReport;
+	public static ExtentTest ExtentTest;
+	
+	/*
+	 * ExtentHtmlReporter : responsible for look and feel of the report ,we can
+	 * specify the report name , document title , theme of the report
+	 * 
+	 * ExtentReports : used to create entries in your report , create test cases in
+	 * report , who executed the test case, environment name , browser
+	 * 
+	 * ExtentTest : update pass fail and skips and logs the test cases results
+	 */
 	
 	public static void ReadPropertyFile() {
 		try {
@@ -56,6 +74,20 @@ public class libraryBusinessFunctions  {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public static void StartExtentReport(){
+		ExtenthtmlReporter =  new ExtentHtmlReporter(System.getProperty("user.dir") + "/test-output/ExtentReportV4.html");
+		ExtenthtmlReporter.config().setDocumentTitle("Automation Report"); // Tile of report
+		ExtenthtmlReporter.config().setReportName("Functional Testing"); // Name of the report
+		ExtenthtmlReporter.config().setTheme(Theme.STANDARD);
+		ExtentReport = new ExtentReports();
+		ExtentReport.attachReporter(ExtenthtmlReporter);
+
+		// Passing General information
+		ExtentReport.setSystemInfo("Host name", "localhost");
+		ExtentReport.setSystemInfo("Environemnt", "QA-SIT");
+		ExtentReport.setSystemInfo("user", "Raghuveer");
 	}
 
 	public static void launchBrowser() {
@@ -249,7 +281,7 @@ public class libraryBusinessFunctions  {
 	
 
 	public static void WriteToExcelFile(XSSFWorkbook objXSSFWorkBook, XSSFSheet objXSSFSheet, int row) {
-		objXSSFSheet = objXSSFWorkBook.getSheet(ObjProp.getProperty("TestData"));
+		objXSSFSheet = objXSSFWorkBook.getSheet(ObjProp.getProperty("DataDrienSheetName"));
 		XSSFCellStyle CellStyle = objXSSFWorkBook.createCellStyle();
 		// CellStyle.setBorderBottom(XSSFCellStyle.BORDER_THIN);
 		System.out.println("Row Number in excel is :" + row);

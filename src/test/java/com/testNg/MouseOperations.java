@@ -48,7 +48,7 @@ public class MouseOperations extends libraryBusinessFunctions {
 	public void ValidatingMouseOperationsRightClick() {
 		try {
 			System.out.println("inside ValidatingMouseOperationsRightClick");
-			
+			ExtentTest = ExtentReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 			  driver.navigate().to(ObjProp.getProperty("mouseOpeartionRightClick"));
 			  waitForPageToLoad(); //Right click operation using Actions class
 			  WebDriverWait wait = new WebDriverWait(driver,60); 
@@ -75,7 +75,7 @@ public class MouseOperations extends libraryBusinessFunctions {
 	public void ValidatingMouseOperationsDoubleCLick() {
 		try {
 			System.out.println("inside ValidatingMouseOperationsDoubleCLick");
-		
+			ExtentTest = ExtentReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 			//Double click operation using Actions class
 			driver.navigate().to(ObjProp.getProperty("mouseOpeartionDoubleClick"));
 			waitForPageToLoad();
@@ -113,7 +113,7 @@ public class MouseOperations extends libraryBusinessFunctions {
 	public void ValidatingMouseOperationsDragAndDrop() {
 		try {
 			System.out.println("inside ValidatingMouseOperationsDragAndDrop");
-		
+			ExtentTest = ExtentReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 				//Drag and Drop Operation
 				driver.navigate().to(ObjProp.getProperty("mouseOperationDragAndDrop"));
 				waitForPageToLoad();
@@ -152,6 +152,7 @@ public class MouseOperations extends libraryBusinessFunctions {
 	@AfterClass
 	public void afterClass() {
 		System.out.println("inside afterClass");
+		StartExtentReport();
 	}
 
 	@BeforeTest

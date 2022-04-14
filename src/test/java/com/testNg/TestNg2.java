@@ -36,10 +36,12 @@ public class TestNg2 extends libraryBusinessFunctions {
 
 	@Test(priority = 0)
 	public void ValidateGmoOnlineLoadedSuccessfully() {
-		int i=1;
-		System.out.println (( ++i + ++i )+( --i + i++ ));
+		/*
+		 * int i=1; System.out.println (( ++i + ++i )+( --i + i++ ));
+		 */
 		
 		String title = driver.getTitle();
+		ExtentTest = ExtentReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		// below are the 
 		 System.out.println(title);
 		Assert.assertEquals(title, "Welcome to Green Mountain Outpost");
@@ -47,6 +49,7 @@ public class TestNg2 extends libraryBusinessFunctions {
 
 	@Test(priority = 1, dependsOnMethods = { "ValidateGmoOnlineLoadedSuccessfully" })
 	public void ValidatioEnterGmoOnline() {
+		ExtentTest = ExtentReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		WebElement element = driver.findElement(By.name("bSubmit"));
 		TakeScreenShotofSpecifiedWebElement(element);
 		element.click();
@@ -80,6 +83,7 @@ public class TestNg2 extends libraryBusinessFunctions {
 
 	@Test(priority=2)
 	public void ValidatePriceCalculationDomeTent() throws InterruptedException{
+		ExtentTest = ExtentReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		/*absolute xpath : going to start from / from html tag from starting of DOM
 		 *Relative Xpath : going to start from // from any where in DOM 
 		absolute xpath example : /html/body/form/table/tbody/tr[1]/td/div/center/table/tbody/tr[2]/td[4]
@@ -120,6 +124,7 @@ public class TestNg2 extends libraryBusinessFunctions {
 	@BeforeClass
 	public void beforeClass() {
 		System.out.println("inside beforeClass");
+		StartExtentReport();
 	}
 
 	@AfterClass
@@ -144,8 +149,9 @@ public class TestNg2 extends libraryBusinessFunctions {
 	@BeforeSuite
 	public void beforeSuite() {
 		System.out.println("inside beforeSuite");
-		int i=1;
-		System.out.println (( ++i + ++i )+( --i + i++ ));
+		/*
+		 * int i=1; System.out.println (( ++i + ++i )+( --i + i++ ));
+		 */
 		obj.ReadPropertyFile();
 	}
 
