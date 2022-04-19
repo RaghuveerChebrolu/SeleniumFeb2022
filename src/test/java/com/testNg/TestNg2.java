@@ -2,6 +2,7 @@ package com.testNg;
 
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.Status;
 import com.utility.libraryBusinessFunctions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -24,6 +25,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
@@ -117,8 +119,9 @@ public class TestNg2 extends libraryBusinessFunctions {
 	}
 
 	@AfterMethod
-	public void afterMethod() {
+	public void afterMethod(ITestResult result) {
 		System.out.println("inside afterMethod");
+		CaptureResultsinExtentReport(result);
 	}
 
 	@BeforeClass
@@ -143,9 +146,10 @@ public class TestNg2 extends libraryBusinessFunctions {
 	@AfterTest
 	public void afterTest() {
 		System.out.println("inside afterTest");
+		flushReport();
 	}
 
-	
+
 	@BeforeSuite
 	public void beforeSuite() {
 		System.out.println("inside beforeSuite");

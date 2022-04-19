@@ -37,6 +37,7 @@ import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
@@ -134,14 +135,10 @@ public class MouseOperations extends libraryBusinessFunctions {
 	}
 
 
-	@BeforeMethod
-	public void beforeMethod() {
-		System.out.println("inside beforeMethod");
-	}
-
 	@AfterMethod
-	public void afterMethod() {
+	public void afterMethod(ITestResult result) {
 		System.out.println("inside afterMethod");
+		CaptureResultsinExtentReport(result);
 	}
 
 	@BeforeClass
@@ -164,6 +161,7 @@ public class MouseOperations extends libraryBusinessFunctions {
 	@AfterTest
 	public void afterTest() {
 		System.out.println("inside afterTest");
+		flushReport();
 	}
 
 	@BeforeSuite

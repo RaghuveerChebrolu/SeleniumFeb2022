@@ -29,10 +29,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
@@ -79,8 +81,8 @@ public class libraryBusinessFunctions  {
 	public static void StartExtentReport(){
 		ExtenthtmlReporter =  new ExtentHtmlReporter(System.getProperty("user.dir") + "/test-output/ExtentReportV4.html");
 		ExtenthtmlReporter.config().setDocumentTitle("Automation Report"); // Tile of report
-		ExtenthtmlReporter.config().setReportName("Functional Testing"); // Name of the report
-		ExtenthtmlReporter.config().setTheme(Theme.STANDARD);
+		ExtenthtmlReporter.config().setReportName("Report"); // Name of the report
+		ExtenthtmlReporter.config().setTheme(Theme.DARK);
 		ExtentReport = new ExtentReports();
 		ExtentReport.attachReporter(ExtenthtmlReporter);
 
@@ -157,6 +159,19 @@ public class libraryBusinessFunctions  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	/* Author : Raghuveer
+	 * This method is used to take screen shot and store the screen shots in side ScreenShot folder
+	 */
+	public static String TakeScreenShot(String testcaseName) throws IOException {
+		
+		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		String dateName = new SimpleDateFormat("yyyyMMDDhhmmss").format(new Date());
+		String destination = System.getProperty("user.dir") + "//ScreenShots//" + dateName + testcaseName+"captured.jpeg";
+		FileUtils.copyFile(src, new File(destination));
+		return destination;
+		
 	}
 	
 	/* Author : Raghuveer
@@ -299,5 +314,31 @@ public class libraryBusinessFunctions  {
 			}
 		}
 		
+	}
+	
+	public void CaptureResultsinExtentReport(ITestResult result) {
+		System.out.println("inside afterMethod");
+		if(result.getStatus()==ITestResult.SUCCESS) {
+			ExtentTest.log(Status.PASS, "TEST CASE Passed Is " + result.getName());
+		}else if(result.getStatus()==ITestResult.FAILURE) {
+			ExtentTest.log(Status.FAIL, "TEST CASE Failed Is " + result.getName());
+			ExtentTest.log(Status.FAIL, "TEST CASE Failed IS " + result.getThrowable());// to add error/exception in extent report
+			try {
+				String screenshotPath = libraryBusinessFunctions.TakeScreenShot(result.getName());
+				ExtentTest.addScreenCaptureFromPath(screenshotPath);//adding screen shot to the extent report
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				ExtentTest.log(Status.FAIL, "TEST CASE Failed IS " + result.getThrowable());
+				e.printStackTrace();
+			}
+		}else if(result.getStatus()==ITestResult.SKIP) {
+			ExtentTest.log(Status.FAIL, "TEST CASE Skipped Is " + result.getName());
+			ExtentTest.log(Status.FAIL, "TEST CASE Skipped IS " + result.getThrowable()); 
+		}
+		
+	}
+	
+	public static void flushReport() {
+		ExtentReport.flush();
 	}
 }
