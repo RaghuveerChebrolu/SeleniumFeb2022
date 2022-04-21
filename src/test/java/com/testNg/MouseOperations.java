@@ -144,12 +144,12 @@ public class MouseOperations extends libraryBusinessFunctions {
 	@BeforeClass
 	public void beforeClass() {
 		System.out.println("inside beforeClass");
+		StartExtentReport();
 	}
 
 	@AfterClass
 	public void afterClass() {
 		System.out.println("inside afterClass");
-		StartExtentReport();
 	}
 
 	@BeforeTest
