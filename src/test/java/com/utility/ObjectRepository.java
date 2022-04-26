@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public class ObjectRepository {
 
 	public static String singleFrameID = "singleframe";
-	public static String FrameTextbox = constants.xpath+"&"+"//input[@type='text']";
+	public String FrameTextbox = constants.xpath+"&"+"//input[@type='text']";
 	public static String FrameWithInIframe = constants.xpath+"&"+"//a[contains(text(),'Iframe with in an Iframe')]";
 	public static String Singleframe = constants.xpath+"&"+"//iframe[@src='SingleFrame.html']";
 	public static String Multipleframe = constants.xpath+"&"+"//iframe[@src='MultipleFrames.html']";
@@ -64,6 +64,6 @@ public class ObjectRepository {
 	public static String DataDriven_ConfirmPassword = constants.ID+"&"+"secondpassword";
 	
 	
-	
+	public static String AllLinks = constants.xpath+"&"+"//a";
 	By QTY_TENTS = By.name("QTY_TENTS");
 }
