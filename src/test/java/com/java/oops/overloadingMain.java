@@ -7,7 +7,7 @@ public class overloadingMain {
 		System.out.println("Overloaded main() method invoked that parses an integer argument");
 		System.out.println(args);
 	}
-
+	
 	// Overloaded main() method 2
 	// invoked when a char is passed
 	public static void main(char args) {
@@ -18,5 +18,6 @@ public class overloadingMain {
 	public static void main(String[] args) {
 		System.out.println("Original main() method invoked");
 		overloadingMain.main(4);
+		overloadingMain.main('a');
 	}
 }
