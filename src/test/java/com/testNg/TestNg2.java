@@ -34,7 +34,7 @@ import org.testng.annotations.AfterSuite;
 
 public class TestNg2 extends libraryBusinessFunctions {
 	
-	libraryBusinessFunctions obj = new libraryBusinessFunctions();
+	TestNg2 obj = new TestNg2();
 
 	@Test(priority = 0)
 	public void ValidateGmoOnlineLoadedSuccessfully() {

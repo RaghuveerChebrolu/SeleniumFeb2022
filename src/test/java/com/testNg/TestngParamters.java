@@ -36,8 +36,8 @@ public class TestngParamters {
 
 	@Parameters({ "UserName", "Passcode" })
 	@Test
-	public void FillLoginForm(String UserName, String Passcode) {
-		System.out.println("Parameter for User Name passed as :- " + UserName);
+	public void FillLoginForm(String Userame, String Passcode) {
+		System.out.println("Parameter for User Name passed as :- " + Userame);
 		System.out.println("Parameter for Passcode passed as :- " + Passcode);
 	}
 	

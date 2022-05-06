@@ -41,8 +41,9 @@ public class ValidatingFrames extends libraryBusinessFunctions{
 		libraryBusinessFunctions.TakeScreenShot();
 		//Below line is for switching control from web page to iframe
 		driver.switchTo().frame(ObjectRepository.singleFrameID);
+		ObjectRepository obj = new ObjectRepository();
 		//driver.findElement(By.xpath(ObjectRepository.FrameTextbox)).sendKeys("Hello How are you Doing ?");
-		libraryBusinessFunctions.FindElement(ObjectRepository.FrameTextbox).sendKeys("Hello How are you Doing ?");
+		libraryBusinessFunctions.FindElement(obj.FrameTextbox).sendKeys("Hello How are you Doing ?");
 		TakeScreenShot();
 		//Below line is for coming out from the frame.
 		driver.switchTo().defaultContent();
@@ -53,7 +54,8 @@ public class ValidatingFrames extends libraryBusinessFunctions{
 		driver.switchTo().frame(FrameElement);
 		WebElement singleFrameElement  = driver.findElement(By.xpath(ObjectRepository.Singleframe));
 		driver.switchTo().frame(singleFrameElement);
-		driver.findElement(By.xpath(ObjectRepository.FrameTextbox)).sendKeys("Hello I am inside singleFrame on MultipleFrames");
+		
+		driver.findElement(By.xpath(obj.FrameTextbox)).sendKeys("Hello I am inside singleFrame on MultipleFrames");
 		//Below line is used to come out of the frame
 		driver.switchTo().defaultContent();
 		TakeScreenShot();

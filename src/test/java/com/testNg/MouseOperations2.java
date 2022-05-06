@@ -44,7 +44,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.AfterSuite;
 
-public class MouseOperations extends libraryBusinessFunctions {
+public class MouseOperations2 extends MouseOperations {
 	@Test(priority = 1)
 	public void ValidatingMouseOperationsRightClick() {
 		try {
@@ -61,7 +61,8 @@ public class MouseOperations extends libraryBusinessFunctions {
 			  Thread.sleep(5000); libraryBusinessFunctions.FindElement(ObjectRepository.
 			  MouseOperationCopyFromRightClickMenu).click(); 
 			  //driver.findElement(By. xpath("//ul[@class='context-menu-list context-menu-root']/li[3]")).click();
-			  Alert objAlert = driver.switchTo().alert(); String text = objAlert.getText();
+			  Alert objAlert = driver.switchTo().alert(); 
+			  String text = objAlert.getText();
 			  Assert.assertEquals(text,
 			  ObjProp.getProperty("mouseOpeartionRightclickCopyActionText"));
 			  Thread.sleep(5000); objAlert.accept();
@@ -128,7 +129,6 @@ public class MouseOperations extends libraryBusinessFunctions {
 				//other way
 				Obj3.clickAndHold(source);
 				Obj3.moveToElement(target).build().perform();
-				TakeScreenShot();
 			
 		}catch (Exception e) {
 			e.printStackTrace();
