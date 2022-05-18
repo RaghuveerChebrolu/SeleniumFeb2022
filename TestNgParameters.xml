@@ -3,15 +3,16 @@
 <suite name="Suite">
 	<parameter name="BrowserName" value="firefox" />
 	<test name="Test">
-		<!-- <parameter name="BrowserName" value="chrome" /> -->
-		<parameter name="UserName" value="demo" />
-		<parameter name="Passcode" value="PASSWORD" />
+		<parameter name="BrowserName" value="chrome" />
+		<parameter name="UserName" value="demo3" />
+		<parameter name="Passcode" value="PASSWORD3" />
 		<classes>
 			<class name="com.testNg.TestngParamters"/>
-			<class name="com.testNg.ValidatingFrames"/>
+			<!-- <class name="com.testNg.ValidatingFrames"/> -->
 		
 		</classes>
 	</test> <!-- Test -->
+	
 	
 </suite> <!-- Suite -->
 
